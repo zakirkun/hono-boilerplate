@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    container_name: db
+    environment:
+      - MYSQL_DATABASE=hono_db
+      - MYSQL_ROOT_PASSWORD=NakanoMikuLoveYou
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

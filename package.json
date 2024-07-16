@@ -1,0 +1,17 @@
+{
+  "name": "hono-boilerplate",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "prisma": "^5.16.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.16.2",
+    "hono": "^4.4.13",
+    "zod": "^3.23.8"
+  }
+}
