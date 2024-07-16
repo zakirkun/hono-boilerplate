@@ -13,5 +13,19 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - '3000:3000'
+    restart: always
+    environment:
+      - PORT=3000
+      - DATABASE_URL="mysql://root:NakanoMikuLoveYou@db:3306/hono_db"
+
 volumes:
   mysql_data:
