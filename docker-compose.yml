@@ -26,6 +26,7 @@ services:
     environment:
       - PORT=3000
       - DATABASE_URL="mysql://root:NakanoMikuLoveYou@db:3306/hono_db"
+      - JWT_SECRET="MyJwtSup3rSecr7e!!@212"
 
 volumes:
   mysql_data:

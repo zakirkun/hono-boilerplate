@@ -2,6 +2,9 @@
   "name": "hono-boilerplate",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "dev": "bun --hot run index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "prisma": "^5.16.2"

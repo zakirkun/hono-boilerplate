@@ -1,13 +1,12 @@
-import { Hono } from "hono";
+import { Hono, type Context } from "hono";
 import { etag } from "hono/etag";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
 import { cors } from "hono/cors";
-import { UsersController } from "./src/controllers/users";
-import { env } from "bun";
+import prisma from "./src/client/prisma";
+import apiRouter from "./src/router/router";
 
 const app = new Hono();
-const userController = new UsersController;
 
 app.use("*", etag(), logger());
 app.use("*", prettyJSON());
@@ -19,9 +18,22 @@ app.get("/", (c) => {
     });
 });
 
-app.get("/users", userController.getAll);
-app.post("/users", userController.createUsers);
+app.get("/seed", (async (c: Context) => {
 
+    await prisma.user.create({
+        data:{
+            email: "hi@zakir.dev",
+            name: "Muh Zakir Ramadhan",
+            password: await Bun.password.hash("zakir", { algorithm: 'bcrypt', cost: 10 })
+        }
+    })
+    
+    return c.json({
+        message: "Data Seed"
+    }, 201);
+}));
+
+app.mount("/api", apiRouter.fetch);
 app.notFound((c) => c.json({ message: "Not Found" }, 404));
 
 export default {

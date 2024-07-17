@@ -1,5 +1,4 @@
-interface User {
-    name?: string;
+interface UserLogin {
     email: string;
     password: string;
 }

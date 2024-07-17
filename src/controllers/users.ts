@@ -33,7 +33,11 @@ export class UsersController {
             await prisma.user.create({
                 data: { ...validate.data }
             });
-
+            
+            return c.json({
+                message:"success"
+            }, 201);
+            
         } catch (e: unknown) {
             console.error(`Error getting users: ${e}`);
             return c.json({
